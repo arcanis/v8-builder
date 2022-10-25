@@ -52,3 +52,5 @@ symbol_level = 0
 '
 ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release v8
+
+ls -Rlh out.gn/x64.release
