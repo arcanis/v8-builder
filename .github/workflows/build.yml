@@ -37,13 +37,7 @@ jobs:
       with:
         name: linux_x86-64
         path: |
-          ~/v8/v8/out.gn/x64.release/*.a
-          ~/v8/v8/out.gn/x64.release/*.so
-          ~/v8/v8/out.gn/x64.release/*.dat
-          ~/v8/v8/out.gn/x64.release/bytecode_builtins_list_generator
-          ~/v8/v8/out.gn/x64.release/gen-regexp-special-case
-          ~/v8/v8/out.gn/x64.release/mksnapshot
-          ~/v8/v8/out.gn/x64.release/torque
+          ~/v8/v8/out.gn/x64.release/obj/libv8_monolith.a
 
   build_macos:
     name: macOS
