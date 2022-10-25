@@ -1,8 +1,9 @@
 name: Build V8
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [master]
     paths:
     - 'V8_VERSION'
     - 'builders/**'
