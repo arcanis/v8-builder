@@ -41,7 +41,7 @@ echo "=====[ Building V8 ]====="
 python ./tools/dev/v8gen.py x64.release -vv -- '
 target_os = "linux"
 is_debug = false
-is_component_build = true
+is_component_build = false
 use_custom_libcxx = false
 v8_static_library = true
 v8_monolithic = true
