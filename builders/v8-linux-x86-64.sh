@@ -11,8 +11,8 @@ sudo apt-get install -y \
     xz-utils \
     zip
 
-git config --global user.name "V8 Android Builder"
-git config --global user.email "v8.android.builder@localhost"
+git config --global user.name "V8 Linux Builder"
+git config --global user.email "v8.linux.builder@localhost"
 git config --global core.autocrlf false
 git config --global core.filemode false
 git config --global color.ui true
@@ -30,25 +30,20 @@ cd v8
 
 echo "=====[ Fetching V8 ]====="
 fetch v8
-echo "target_os = ['android']" >> .gclient
+echo "target_os = ['linux']" >> .gclient
 cd ~/v8/v8
-./build/install-build-deps-android.sh
+./build/install-build-deps.sh --no-syms --no-nacl --no-prompt
 git checkout $VERSION
 gclient sync
 
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py x64.release -vv -- '
-target_os = "android"
-target_cpu = "x64"
-v8_target_cpu = "x64"
-is_component_build = true
-use_custom_libcxx = false
-v8_enable_i18n_support = true
-v8_use_external_startup_data = false
-symbol_level = 1
-'
+python ./tools/dev/v8gen.py x64.release -vv -- <<EOT
+target_os = "linux"
+$(cat ./FLAGS)
+EOT
 ninja -C out.gn/x64.release -t clean
-ninja -C out.gn/x64.release v8_libplatform
-ninja -C out.gn/x64.release v8
-cp ./third_party/android_ndk/sources/cxx-stl/llvm-libc++/libs/x86_64/libc++_shared.so ./out.gn/x64.release
+ninja -C out.gn/x64.release v8_monolith
+
+rsync -rv --include="*/" --include="*.h" --exclude="*" ./include/ out.gn/x64.release/gen/include
+ls -Rlh out.gn/x64.release

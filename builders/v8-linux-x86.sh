@@ -38,19 +38,14 @@ gclient sync
 
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py x64.release -vv -- '
+python ./tools/dev/v8gen.py x64.release -vv -- <<EOT
 target_os = "linux"
-is_debug = false
-is_component_build = false
-use_custom_libcxx = false
-v8_static_library = true
-v8_monolithic = true
-v8_enable_test_features = false
-v8_enable_i18n_support = false
-v8_use_external_startup_data = false
-symbol_level = 0
-'
-ninja -C out.gn/x64.release -t clean
-ninja -C out.gn/x64.release v8_monolith
+target_cpu = "x86"
+v8_target_cpu = "x86"
+$(cat ./FLAGS)
+EOT
+ninja -C out.gn/x86.release -t clean
+ninja -C out.gn/x86.release v8_monolith
 
-ls -Rlh out.gn/x64.release
+rsync -rv --include="*/" --include="*.h" --exclude="*" ./include/ out.gn/x86.release/gen/include
+ls -Rlh out.gn/x86.release
