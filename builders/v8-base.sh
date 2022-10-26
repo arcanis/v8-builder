@@ -1,5 +1,16 @@
 VERSION=$1
 
+sudo apt-get install -y \
+    pkg-config \
+    git \
+    subversion \
+    curl \
+    wget \
+    build-essential \
+    python \
+    xz-utils \
+    zip
+
 git config --global user.name "V8 Builder"
 git config --global user.email "v8.builder@localhost"
 git config --global core.autocrlf false
