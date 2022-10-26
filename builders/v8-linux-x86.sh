@@ -38,10 +38,8 @@ gclient sync
 
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py x64.release -vv -- <<EOT
+python ./tools/dev/v8gen.py ia32.release x86.release -vv -- <<EOT
 target_os = "linux"
-target_cpu = "x86"
-v8_target_cpu = "x86"
 $(cat ./FLAGS)
 EOT
 ninja -C out.gn/x86.release -t clean
