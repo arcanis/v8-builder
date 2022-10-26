@@ -40,12 +40,13 @@ cd ~/v8/v8
 git checkout $VERSION
 gclient sync
 
-
-echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py x64.release -vv -- <<EOT
+read -r -d '' V8_FLAGS <<- EOM
 target_os = "linux"
 $(cat $SCRIPT_DIR/V8_FLAGS)
-EOT
+EOM
+
+echo "=====[ Building V8 ]====="
+python ./tools/dev/v8gen.py x64.release -vv -- "$V8_FLAGS"
 ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release v8_monolith
 
