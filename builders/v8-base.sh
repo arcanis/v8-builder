@@ -1,15 +1,17 @@
 VERSION=$1
 
-sudo apt-get install -y \
-    pkg-config \
-    git \
-    subversion \
-    curl \
-    wget \
-    build-essential \
-    python \
-    xz-utils \
-    zip
+if [[ $V8_PLATFORM == linux ]]; then
+    sudo apt-get install -y \
+        pkg-config \
+        git \
+        subversion \
+        curl \
+        wget \
+        build-essential \
+        python \
+        xz-utils \
+        zip
+fi
 
 git config --global user.name "V8 Builder"
 git config --global user.email "v8.builder@localhost"
