@@ -47,3 +47,8 @@ ninja -C out.gn/build v8_monolith
 
 rsync -rv --include="*/" --include="*.h" --exclude="*" ./include/ out.gn/build/gen/include
 ls -Rlh out.gn/build
+
+mkdir out.gn/out
+
+mv out.gn/build/obj/libv8_monolith.a out.gn/out/
+mv out.gn/build/gen/include out.gn/out/

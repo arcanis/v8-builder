@@ -36,8 +36,7 @@ jobs:
       with:
         name: linux_ia32
         path: |
-          ~/v8/v8/out.gn/build/obj/libv8_monolith.a
-          ~/v8/v8/out.gn/build/gen/include
+          ~/v8/v8/out.gn/out/
 
   build_linux_x64:
     name: Linux x64
@@ -53,8 +52,7 @@ jobs:
       with:
         name: linux_x64
         path: |
-          ~/v8/v8/out.gn/build/obj/libv8_monolith.a
-          ~/v8/v8/out.gn/build/gen/include
+          ~/v8/v8/out.gn/out/
 
   build_macos:
     name: macOS
@@ -70,8 +68,7 @@ jobs:
       with:
         name: macos
         path: |
-          ~/v8/v8/out.gn/build/obj/libv8_monolith.a
-          ~/v8/v8/out.gn/build/gen/include
+          ~/v8/v8/out.gn/out/
 
   release:
     name: Release
