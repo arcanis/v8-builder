@@ -31,7 +31,7 @@ jobs:
     - name: Run build script
       run: |
         cd $GITHUB_WORKSPACE
-        sh ./builders/v8-linux-ia32.sh ${{ needs.version_reader.outputs.v8_version }}
+        bash ./builders/v8-linux-ia32.sh ${{ needs.version_reader.outputs.v8_version }}
     - uses: actions/upload-artifact@v2
       with:
         name: linux_ia32
@@ -48,7 +48,7 @@ jobs:
     - name: Run build script
       run: |
         cd $GITHUB_WORKSPACE
-        sh ./builders/v8-linux-x64.sh ${{ needs.version_reader.outputs.v8_version }}
+        bash ./builders/v8-linux-x64.sh ${{ needs.version_reader.outputs.v8_version }}
     - uses: actions/upload-artifact@v2
       with:
         name: linux_x64
@@ -65,7 +65,7 @@ jobs:
     - name: Run build script
       run: |
         cd $GITHUB_WORKSPACE
-        sh ./builders/v8-macos.sh ${{ needs.version_reader.outputs.v8_version }}
+        bash ./builders/v8-macos.sh ${{ needs.version_reader.outputs.v8_version }}
     - uses: actions/upload-artifact@v2
       with:
         name: macos
