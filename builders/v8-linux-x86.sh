@@ -1,3 +1,7 @@
+set -ex
+
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
 VERSION=$1
 
 sudo apt-get install -y \
@@ -38,9 +42,9 @@ gclient sync
 
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py ia32.release x86.release -vv -- <<EOT
+python ./tools/dev/v8gen.py gen ia32.release x86.release -vv -- <<EOT
 target_os = "linux"
-$(cat ./FLAGS)
+$(cat $SCRIPT_DIR/V8_FLAGS)
 EOT
 ninja -C out.gn/x86.release -t clean
 ninja -C out.gn/x86.release v8_monolith
