@@ -42,7 +42,7 @@ gclient sync
 
 read -r -d '' V8_FLAGS <<- EOM
 target_os = "linux"
-$(cat $SCRIPT_DIR/V8_FLAGS)
+$(cat $SCRIPT_DIR/../V8_FLAGS)
 EOM
 
 echo "=====[ Building V8 ]====="
